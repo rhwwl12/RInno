@@ -26,7 +26,7 @@ get_R <- function(app_dir = getwd(),
   old_R_versions <- readLines("https://cran.rstudio.com/bin/windows/base/old/", warn = F) %>%
     stringr::str_extract("[1-4]\\.[0-9]+\\.[0-9]+") %>% stats::na.omit()
 
-  if (latest_R_version == R_version) {
+  if (latest_R_version[1] == R_version) {
     base_url <- glue::glue("https://cran.r-project.org/bin/windows/base/R-{R_version}-win.exe")
   } else {
     base_url <- glue::glue("https://cran.r-project.org/bin/windows/base/old/{R_version}/R-{R_version}-win.exe")
@@ -39,7 +39,7 @@ get_R <- function(app_dir = getwd(),
   } else {
     cat(glue::glue("Downloading R-{R_version} ...\n"))
 
-    if (!R_version %in% c(latest_R_version, old_R_versions)) stop(glue::glue("That version of R ({R_version}) is not listed on CRAN."), call. = F)
+    if (!R_version %in% c(latest_R_version[1], old_R_versions[2])) stop(glue::glue("That version of R ({R_version}) is not listed on CRAN."), call. = F)
 
     tryCatch(curl::curl_download(base_url, filename),
       error = function(e) {
