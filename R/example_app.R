@@ -37,7 +37,7 @@ example_app <- function(app_dir = "app", wd = getwd(), type = "Shiny") {
     dir.create(html_dir)
     dir.create(local_dir)
 
-    app_files <- list.files(system.file("app", package = "RInno"), full.names = TRUE, pattern = "*.R")
+    app_files <- list.files(system.file("app", package = "RInno"), full.names = TRUE, pattern = ".R")
     data_files <- list.files(system.file("app/data", package = "RInno"), full.names = TRUE)
     www_files <- list.files(system.file("app/www", package = "RInno"), full.names = TRUE)
     html_files <- list.files(system.file("app/html", package = "RInno"), full.names = TRUE)
